@@ -1,26 +1,125 @@
 @import "tailwindcss";
+@plugin '../hero.ts';
+@source '../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
+@custom-variant dark (&:is(.dark *));
 
+/* create css variables */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: "#000000";
+  --foreground: "#FFFFFF";
 }
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* use the css variables */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* create a class using the injected variable and fallback to sans-serif */
+.font-somar {
+  font-family: var(--font-somar), sans-serif;
+}
+
+svg.star-svg {
+  display: inline;
+}
+
+/* Base dot style */
+.custom-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #d4d4d4;
+  transition: all 0.3s ease;
+}
+
+/* Highlight active dot */
+.slick-dots li.slick-active .custom-dot {
+  background: #e23626;
+}
+.slides-swiper .slick-center {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+  z-index: 10;
+}
+
+/* Theme variables aren't just CSS variables — they also instruct Tailwind to create new utility classes that you can use in your HTML */
+@theme {
+  --breakpoint-xs: 26.75rem; /* 428px*/
+  --breakpoint-2xs: 23.4375rem; /* 375px*/
+  --breakpoint-1150: 71.875rem; /* 1150px*/
+
+  /* Primary Color Scale */
+  --color-primary-50: #fef3f2;
+  --color-primary-100: #ffe4e1;
+  --color-primary-200: #ffcdc8;
+  --color-primary-300: #ffaaa2;
+  --color-primary-400: #fc796d;
+  --color-primary-500: #f44e3f;
+  --color-primary-600: #e23626;
+  --color-primary-700: #be2517;
+  --color-primary-800: #9d2217;
+  --color-primary-900: #82231a;
+
+  /* Secondary Color Scale */
+  --color-secondary-50: #ffffff;
+  --color-secondary-100: #e4e4e4;
+  --color-secondary-200: #d4d4d4;
+  --color-secondary-300: #d9d9d9;
+  --color-secondary-400: #b2b2b2;
+  --color-secondary-500: #414141;
+  --color-secondary-600: #6e7485;
+  --color-secondary-700: #363636;
+  --color-secondary-800: #373737;
+  --color-secondary-900: #202020;
+
+  /* Warning Color Scale */
+  --color-warning-100: #f7f4ef;
+  --color-warning-200: #ebe4d6;
+  --color-warning-300: #d8cab0;
+  --color-warning-400: #c2a982;
+  --color-warning-500: #b29165;
+  --color-warning-600: #a07b52;
+  --color-warning-700: #896445;
+  --color-warning-800: #6f4d39;
+  --color-warning-900: #5e4235;
+
+  /* Success Color Scale */
+  --color-success-50: #f0fce9;
+  --color-success-100: #def8cf;
+  --color-success-200: #b9f19d;
+  --color-success-300: #95e76f;
+  --color-success-400: #70d942;
+  --color-success-500: #50be24;
+  --color-success-600: #3a9818;
+  --color-success-700: #2e7417;
+  --color-success-800: #285c18;
+  --color-success-900: #254e19;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@layer base {
+  h1 {
+    @apply text-[28px] sm:text-[34px] lg:text-[40px] xl:text-[50px] font-black leading-[120%];
+  }
+  h2 {
+    @apply text-[20px] sm:text-[26px] lg:text-[32px] xl:text-[42px] font-bold leading-[120%];
+  }
+  h3 {
+    @apply text-[18px] xs:text-[20px] sm:text-[26px] lg:text-[28px] xl:text-[32px] font-bold leading-[120%];
+  }
+  h4 {
+    @apply text-[16px] xs:text-[18px] sm:text-[20px] lg:text-[24px] xl:text-[38px] font-bold leading-[120%];
+  }
+  h5 {
+    @apply text-[14px] xs:text-[16px] sm:text-[18px] lg:text-[20px] xl:text-[22px] font-bold leading-[120%];
+  }
+  h6 {
+    @apply text-[12px] xs:text-[13px] sm:text-[14px] lg:text-[16px] xl:text-[18px] font-bold leading-[160%];
+  }
+  p {
+    @apply text-secondary-200 text-[14px] xs:text-[16px] md:text-[18px] lg:text-[20px] xl:text-[22px] leading-[160%];
+  }
 }
